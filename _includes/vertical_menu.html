@@ -1,0 +1,33 @@
+<nav class="vertical-menu">
+	<div class="profile-container">
+		{% if src %}
+		<img src="/assets/images/profile.jpg" alt="https://avatars.githubusercontent.com/u/114140050?v=4" class="profile-image">
+		{% else %}
+		<img src="https://avatars.githubusercontent.com/u/114140050?v=4" alt="profile image" class="profile-image">
+		{% endif %}
+		<div class="profile-name">
+			<div>{{site.data.userDatas[0].name}}</div>
+		</div>
+		
+		<div class="profile-description">
+			<div>{{site.data.userDatas[0].description}}</div>
+		</div>
+		<div class="profile-sns">
+			{% for sns in site.data.userDatas[0].sns %}
+			<div class="profile-sns-item">
+				<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+					<path d="{{sns.icon}}"/>
+				</svg>
+				<a href="{{sns.link}}">{{sns.platform}}</a>
+			</div>
+			{% endfor %}
+		</div>
+	</div>
+	<hr width="80%" color="#d6d6d6">
+	
+	<div class="vertical-menu-container">
+		{% for item in site.data.navigation %}
+		<div class="vertical-menu-title" onclick="location.href='{{ item.link }}'" {% if page.url == item.link %} class="current" {% endif %}>{{ item.name }}</div>
+		{% endfor %}
+	</div>
+</nav>

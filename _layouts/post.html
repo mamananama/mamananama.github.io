@@ -1,0 +1,44 @@
+---
+layout: default
+---
+
+<head>
+	<link rel="stylesheet" href="/assets/css/syntax.css" />
+	<link rel="stylesheet" href="/assets/css/post.css" />
+</head>
+
+<div class="post">
+	<h1>{{ page.title }}</h1>
+	<div class="post-date">{{ page.date | date: "%Y년 %m월 %d일" }}</div>
+	{{content}} 
+	{%- comment -%} 
+	{% if page.tags %}
+	<small>
+		tags:
+		<em>{{ page.tags | join: "</em>
+		-
+		<em>" }}</em>
+	</small>
+	{% endif %} 
+	{%- endcomment -%}
+	<div class="comment-container">
+		<script src="https://giscus.app/client.js"
+        data-repo="mamananama/blog-comment"
+        data-repo-id="R_kgDONmD07w"
+        data-category="[ENTER CATEGORY NAME HERE]"
+        data-category-id="[ENTER CATEGORY ID HERE]"
+        data-mapping="pathname"
+        data-strict="0"
+        data-reactions-enabled="1"
+        data-emit-metadata="0"
+        data-input-position="top"
+        data-theme="preferred_color_scheme"
+        data-lang="ko"
+        data-loading="lazy"
+        crossorigin="anonymous"
+        async>
+		</script>
+	</div>
+</div>
+<script src="/assets/scripts/jquery-3.7.1.min.js"></script>
+<script src="/assets/scripts/imageOrigin.js"></script>

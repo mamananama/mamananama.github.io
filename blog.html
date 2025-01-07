@@ -1,0 +1,17 @@
+---
+layout: default
+title: Blog
+permalink: /blog/
+---
+<div class="content-wrap">
+<h1>카테고리</h1>
+
+{% assign categories = site.categories | sort %}
+{% for category in categories %}
+	<div id="categories" class="menu-content-item-wrap">
+		<div class="category-title">{{ category[0] }}
+		</div>
+	</div>
+{% endfor %}
+
+</div>
