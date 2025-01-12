@@ -1,0 +1,36 @@
+---
+layout: default
+title: 카테고리
+permalink: /categories/
+---
+<head>
+    <link rel="stylesheet" href="../assets/css/category.css">
+</head>
+
+
+<div class="content-wrap">
+    <h1>카테고리</h1>
+    
+    {% assign categories = site.categories | sort %}
+    {% for category in categories %}
+        <div class="category-wrap content-effect" onclick="location.href='/categories/{{ category[0] }}'">
+            <div class="category-item-wrap">
+                <div class="category-title" >
+                    <h2 class="category-name">{{ category[0] }}</h2>
+                    <p class="category-recent-post">{{ category[1].size }}개의 최근 포스트</p>
+                </div>
+                <div class="category-recent-post-list">
+                    {% for post in category[1] limit: 5 %}
+                    <div class="category-recent-post-item">  
+                        <div class="category-recent-post-item-bullet"></div>
+                        <div class="category-recent-post-item-title">{{ post.title }}</div>
+                        <div class="category-recent-post-item-date">{{post.date | date: "%Y-%m-%d"}}</div> 
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+
+    {% endfor %}
+    
+</div>
