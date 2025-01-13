@@ -1,9 +1,10 @@
-_site
+.frontmatter
 .sass-cache
 .jekyll-cache
 .jekyll-metadata
 .frontmatter
 .history
 .DS_Store
-
-vendor
+.lh
+.vs
+.vscode
