@@ -10,6 +10,11 @@ layout: default
 <div class="post">
 	<h1>{{ page.title }}</h1>
 	<div class="post-date">{{ page.date | date: "%Y년 %m월 %d일" }}</div>
+	<div style="text-align: center;">
+		<a href="https://hits.seeyoufarm.com/api/count/incr/badge.svg?url={{site.url | remove_first: 'https://' | remove_first: 'http://' }}/{{ page.url | remove_first: '/' | replace: '/', '-' }}" target="_blank">
+		  <img src="{{ site.url | remove_first: 'https://' | remove_first: 'http://' }}/{{ page.url | remove_first: '/' | replace: '/', '-' }}.svg" />
+		</a>
+	  </div> 
 	{{content}} 
 	{%- comment -%} 
 	{% if page.tags %}
