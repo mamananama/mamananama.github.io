@@ -31,9 +31,9 @@ github_username: jekyll
 plugins:
     - jekyll-feed
 
-permalink: "/blog/:categories/:title:output_ext"
+permalink: "categories/:categories/:title:output_ext"
 paginate: 10
-pagenate_path: "/blog/:categories"
+pagenate_path: "categories/:categories"
 # Exclude from processing.
 # The following items will not be processed, by default.
 # Any item listed under the `exclude:` key here will be automatically added to
