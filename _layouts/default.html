@@ -3,14 +3,20 @@
 	<head>
 		<meta charset="UTF-8" />
 		<link rel="stylesheet" href="/assets/css/styles.css" />
-
 		<title>{{page.title}}</title>
 	</head>
-
+	
 	<body>
 		<div class="page">
 			<div class="main">
-				{{content}}
+				<div class="landing-main">
+					<header class="horizontal-menu">
+						<p>{{page.title}}</h1>
+					</header>
+					<div class="content-wrap">
+						{{content}}
+					</div>
+				</div>
 				{% include vertical_menu.html %}
 			</div>
 		</div>

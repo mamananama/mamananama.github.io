@@ -1,16 +1,9 @@
 ---
 layout: default
-title: 카테고리
+title: Categories
 permalink: categories/
 ---
-<head>
-    <link rel="stylesheet" href="/assets/css/category.css">
-</head>
-
-
-<div class="content-wrap">
-    <h1>카테고리</h1>
-    
+<div class="post-list">
     {% assign categories = site.categories | sort %}
     {% for category in categories %}
         <div class="category-wrap content-effect" onclick="location.href='/categories/{{ category[0] }}'">
@@ -32,5 +25,4 @@ permalink: categories/
         </div>
 
     {% endfor %}
-    
 </div>
