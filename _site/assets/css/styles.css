@@ -1,5 +1,5 @@
 @font-face { font-family: 'SUITE-Regular'; src: url("https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_2304-2@1.0/SUITE-Regular.woff2") format("woff2"); font-weight: 400; font-style: normal; }
-html { overflow: scroll; }
+html { overflow: auto; }
 
 body, div, p, a, ul, li, h1, h2, h3, h4, h5 { box-sizing: border-box; padding: 0px; margin: 0px; text-align: left; }
 
@@ -9,7 +9,7 @@ a { text-decoration: none; color: inherit; }
 
 body { font-family: 'SUITE-Regular'; display: flex; flex-direction: row; justify-content: center; }
 
-.horizontal-menu { width: 100%; height: 48px; display: flex; justify-content: start; align-items: center; gap: 20px; padding-left: 20px; background-color: #868686; box-shadow: 0 4px 10px 0 #d0d0d0; margin-bottom: 120px; flex-shrink: 0; flex-grow: 0; }
+.horizontal-menu { width: 100%; height: 48px; display: flex; justify-content: start; align-items: center; gap: 20px; padding-left: 20px; background-color: #868686; box-shadow: 0 4px 10px 0 #d0d0d0; margin-bottom: 120px; flex-shrink: 0; flex-grow: -1; }
 
 .horizontal-menu * { font-size: 24px; font-weight: bold; color: #ffffff; }
 
@@ -17,7 +17,7 @@ body { font-family: 'SUITE-Regular'; display: flex; flex-direction: row; justify
 
 .main { display: flex; flex-direction: row; justify-content: space-between; width: inherit; height: 100vh; flex-shrink: 0; flex-grow: 1; }
 
-.landing-main { display: flex; flex-direction: column; width: inherit; height: 100vh; }
+.landing-main { display: flex; flex-direction: column; width: inherit; height: 100%; }
 
 .landing-wrap { width: 100%; height: 300px; display: flex; flex-direction: column; justify-content: center; align-items: center; }
 
@@ -27,7 +27,7 @@ body { font-family: 'SUITE-Regular'; display: flex; flex-direction: row; justify
 
 #categories { display: flex; flex-direction: column; align-items: center; width: 100%; }
 
-.category-wrap { box-sizing: border-box; display: flex; flex-direction: column; justify-content: space-between; align-items: center; min-width: 800px; height: 300px; border-radius: 24px; }
+.category-wrap { box-sizing: border-box; display: flex; flex-direction: column; justify-content: space-between; align-items: center; min-width: 800px; height: 300px; border-radius: 24px; flex-shrink: 0; flex-grow: -1; }
 
 .category-title { display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 10px; }
 
@@ -41,7 +41,7 @@ body { font-family: 'SUITE-Regular'; display: flex; flex-direction: row; justify
 
 .category-recent-post-item-date { border-radius: 8px; background-color: #e4e4e4; padding: 4px; }
 
-.vertical-menu { box-sizing: border-box; width: 300px; padding-top: 60px; padding-left: 20px; padding-right: 20px; background-color: #fafafa; color: black; box-shadow: inset 8px 0px 8px 0px #d6d6d6; flex-shrink: 0; flex-grow: 0; }
+.vertical-menu { box-sizing: border-box; width: 300px; padding-top: 60px; padding-left: 20px; padding-right: 20px; background-color: #fafafa; color: black; box-shadow: inset 8px 0px 8px 0px #d6d6d6; flex-shrink: 0; flex-grow: -1; }
 
 .vertical-menu-container { display: flex; flex-direction: column; align-items: center; gap: 20px; }
 
