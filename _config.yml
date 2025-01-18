@@ -75,9 +75,9 @@ kramdown:
 
 tipue_search:
   include:
-    pages: true
+    pages: false
     collections: [posts]
   exclude:
-    files: [search.html, index.html, tags.html. categories, q_includes, _layouts, assets, scripts]
+    files: [search.html, index.html, tags.html, "*.html", "*.md", "*.css", "*.scss", "*.js", "*.json", "*.xml", "*.rb", "assets/*", "_layouts/*"]
     categories: []
     tags: []
