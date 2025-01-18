@@ -1,0 +1,45 @@
+name: Create Category Pages
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - '_posts/**'
+
+jobs:
+  create-category-pages:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Create category pages
+        run: |
+          # 카테고리 디렉토리 생성
+          mkdir -p category
+
+          # _posts 디렉토리의 모든 마크다운 파일 처리
+          for file in _posts/*.md; do
+            # 파일에서 카테고리 추출
+            category=$(grep -m 1 "category:" "$file" | sed 's/category: //' | tr -d '[:space:]')
+            
+            if [ ! -z "$category" ]; then
+              # 카테고리 페이지 파일 경로
+              category_file="category/${category}.html"
+              
+              # 카테고리 페이지가 없으면 생성
+              if [ ! -f "$category_file" ]; then
+                echo "---" > "$category_file"
+                echo "layout: default" >> "$category_file"
+                echo "title: $category" >> "$category_file"
+                echo "permalink: categories/$category/" >> "$category_file"
+                echo "---" >> "$category_file"
+                echo "{% include category_post_list.html %}" >> "$category_file"
+              fi
+            fi
+          done
+
+      - name: Commit and push if changed
+        run: |
+          git config --global user.email "action@github.com"
+          git config --global user.name "GitHub Action"
+          git add -A
+          git diff --quiet && git diff --staged --quiet || (git commit -m "Automatically create category pages" && git push)
