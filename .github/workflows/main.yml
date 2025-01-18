@@ -27,7 +27,8 @@ jobs:
           # _posts 디렉토리의 모든 마크다운 파일 처리
           for file in _posts/*.md; do
             # 파일에서 카테고리 추출
-            categories=$(sed -n '/^categories:/,/^[^ ]/p' "$file" | grep -v '^categories:' | sed 's/^- //' | tr -d '[]"' | tr ',' '\n')
+            categories=$(grep -oP '^categories:\s*\K\[.*\]' "$file" | tr -d '[]"' | tr ',' '\n' | sed 's/^[[:space:]]*//' | sed 's/[[:space:]]*$//')
+
             
             # 각 카테고리에 대해 처리
             echo "$categories" | while read -r category; do
@@ -38,14 +39,11 @@ jobs:
                 # 카테고리 페이지가 없으면 생성
                 if [ ! -f "$category_file" ]; then
                   echo "---" > "$category_file"
-                  echo "layout: category" >> "$category_file"
-                  echo "title: Category - $category" >> "$category_file"
-                  echo "category: $category" >> "$category_file"
+                  echo "layout: default" >> "$category_file"
+                  echo "title: $category" >> "$category_file"
+                  echo "permalink: categories/$category/" >> "$category_file"
                   echo "---" >> "$category_file"
-                  echo "<h2>Posts in category '$category'</h2>" >> "$category_file"
-                  echo "{% for post in site.categories['$category'] %}" >> "$category_file"
-                  echo "  <li><a href="{{ post.url }}">{{ post.title }}</a></li>" >> "$category_file"
-                  echo "{% endfor %}" >> "$category_file"
+                  echo "{% include category_post_list.html %}" >> "$category_file"
                   
                   echo "Created category page for $category"
                 fi
