@@ -39,7 +39,7 @@ jobs:
 
       - name: Commit and push if changed
         run: |
-          git config --global user.email "action@github.com"
-          git config --global user.name "GitHub Action"
+          git config --global user.email "blublobla.000@gmail.com"
+          git config --global user.name "mamananama"
           git add -A
           git diff --quiet && git diff --staged --quiet || (git commit -m "Automatically create category pages" && git push)
