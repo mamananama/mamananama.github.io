@@ -11,6 +11,11 @@ jobs:
   create-category-pages:
     runs-on: ubuntu-latest
     steps:
+      - name: Set up Git
+        run: | 
+        git config --global user.name 'github-actions[bot]'
+        git config --global user.email 'github-actions[bot]@users.noreply.github.com'
+
       - name: Checkout repository
         uses: actions/checkout@v3
 
@@ -48,9 +53,14 @@ jobs:
             done
           done
 
-      - name: Commit and push if changed
+      - name: Commit changes
         run: |
-          git config --local user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git config --local user.name "github-actions[bot]"
-          git add -A
-          git diff --quiet && git diff --staged --quiet || (git commit -m "Automatically create category pages" && git push)
+          git add categories/
+          git commit -m "Automatically create category pages"
+
+      - name: Push changes
+        env:
+          ACTIONS_DEPLOY_KEY: ${{ secrets.ACTIONS_DEPLOY_KEY }}
+        run: |
+          git remote set-url origin https://x-access-token:${{ secrets.ACTIONS_DEPLOY_KEY }}@github.com/mamananama/mamananama.github.io.git
+          git push origin main
