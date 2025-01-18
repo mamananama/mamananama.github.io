@@ -22,7 +22,7 @@ jobs:
           # _posts 디렉토리의 모든 마크다운 파일 처리
           for file in _posts/*.md; do
             # 파일에서 카테고리 추출
-            category=$(grep -m 1 "category:" "$file" | sed 's/category: //' | tr -d '[:space:]')
+            category=$(grep -m 1 "categories:" "$file" | sed 's/categories: //' | tr -d '[:space:]')
             
             if [ ! -z "$category" ]; then
               # 카테고리 페이지 파일 경로
