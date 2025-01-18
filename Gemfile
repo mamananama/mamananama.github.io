@@ -37,3 +37,5 @@ gem "faraday-retry", "~> 2.2"
 gem "webrick", "~> 1.8"
 
 gem "rouge"
+
+gem "kramdown-parser-gfm"
