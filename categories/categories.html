@@ -10,7 +10,7 @@ permalink: categories/
             <div class="category-item-wrap">
                 <div class="category-title" >
                     <h2 class="category-name">{{ category[0] }}</h2>
-                    <p class="category-recent-post">{{ category[1].size }}개의 최근 포스트</p>
+                    <p class="category-recent-post">{{ category[1].size }}개의 포스트</p>
                 </div>
                 <div class="category-recent-post-list">
                     {% for post in category[1] limit: 5 %}

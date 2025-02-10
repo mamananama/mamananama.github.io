@@ -1,13 +1,15 @@
 ---
 layout: default
 ---
+<head>
+	<link rel="stylesheet" href="/assets/css/syntax.css">
+</head>
+
 <div class="post">
 	<h1>{{ page.title }}</h1>
 	<div class="post-date">{{ page.date | date: "%Y년 %m월 %d일" }}</div>
 	<div style="text-align: center;">
-		<a href="https://hits.seeyoufarm.com/api/count/incr/badge.svg?url={{site.url | remove_first: 'https://' | remove_first: 'http://' }}/{{ page.url | remove_first: '/' | replace: '/', '-' }}" target="_blank">
-		  <img src="{{ site.url | remove_first: 'https://' | remove_first: 'http://' }}/{{ page.url | remove_first: '/' | replace: '/', '-' }}.svg" />
-		</a>
+		  <img src="https://hits.seeyoufarm.com/api/count/incr/badge.svg?url={{ site.url | remove_first: 'https://' | remove_first: 'http://' }}/{{ page.url | remove_first: '/'}}.svg" />
 	  </div> 
 	{{content}} 
 	{%- comment -%} 
@@ -37,6 +39,31 @@ layout: default
         crossorigin="anonymous"
         async>
 		</script>
+	</div>
+	<div class="">
+		{% assign posts = site.posts | where: "category", page.category %}
+		{% for post in posts %}
+		{% if post.title == page.title %}
+			{% assign post_index = forloop.index0 %}
+			{% assign prev_index = post_index | plus: 1 %}
+			{% assign next_index = post_index | minus: 1 %}
+		{% endif %}
+		{% endfor %}
+
+		<div class="post-navigation">
+		{% if prev_index < posts.size %}
+			<div class="prev-post">
+			<a href="{{ posts[prev_index].url }}">« {{ posts[prev_index].title }}</a>
+			</div>
+		{% endif %}
+		
+		{% if next_index >= 0 %}
+			<div class="next-post">
+			<a href="{{ posts[next_index].url }}">{{ posts[next_index].title }} »</a>
+			</div>
+		{% endif %}
+		</div>
+
 	</div>
 </div>
 <script src="/assets/scripts/jquery-3.7.1.min.js"></script>
