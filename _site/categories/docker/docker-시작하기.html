@@ -3,7 +3,7 @@
 	<head>
 		<meta charset="UTF-8" />
 		<link rel="stylesheet" href="/assets/css/styles.css" />
-		<title>왜 Docker를 사용할까?</title>
+		<title>Docker 알아보기</title>
 	</head>
 	
 	<body>
@@ -11,54 +11,40 @@
 			<div class="main">
 				<div class="landing-main">
 					<header class="horizontal-menu">
-						<p>왜 Docker를 사용할까?</h1>
+						<p>Docker 알아보기</h1>
 					</header>
 					<div class="content-wrap">
-						<head>
-	<link rel="stylesheet" href="/assets/css/syntax.css">
-</head>
-
-<div class="post">
-	<h1>왜 Docker를 사용할까?</h1>
+						<div class="post">
+	<h1>Docker 알아보기</h1>
 	<div class="post-date">2025년 01월 18일</div>
-	<div style="text-align: center;">
-		  <img src="https://hits.seeyoufarm.com/api/count/incr/badge.svg?url=localhost:4000/categories/docker/docker-%EC%8B%9C%EC%9E%91%ED%95%98%EA%B8%B0.html.svg" />
-	  </div> 
-	<div class="abstract">
-    <p>Udemy에서 제공하는 "【한글자막】 Docker - Java 개발자를 위한 완벽 실습 과정" 강의를 기반으로 작성합니다.</p>
-</div>
+	<div class="hits-wrap" style="text-align: center;">
+		<img src="https://hits.seeyoufarm.com/api/count/incr/badge.svg?url=localhost:4000/categories/docker/docker-%EC%8B%9C%EC%9E%91%ED%95%98%EA%B8%B0.html.svg" />
+	</div> 
+	<div class="preview-warp">Docker란 무엇이고 왜 쓰는걸까?</div>
+	<div class="horizon-bar"></div>
+	<div class="post-body">
+		<h5 id="1-개발-초기-환경-세팅의-불편한-경험">1. 개발 초기, 환경 세팅의 불편한 경험</h5>
 
-<hr />
+<p>프로그램을 개발할 때 처음부터 모든 것들을 하나하나 개발하지는 않습니다.</p>
 
-<h5 id="1-프로그램에-필요한-환경-설정">1. 프로그램에 필요한 환경 설정</h5>
+<p>대부분의 프로그램들이 이미 개발된 여러 라이브러리, 모듈, 소스 등 을 프로젝트에 적용하여 개발되고있습니다.</p>
 
-<p>프로그램을 개발할 때 처음부터 모든 것들을 하나하나 개발하지는 않는다.</p>
-
-<p>대부분의 프로그램들이 이미 개발된 여러 라이브러리, 모듈, 소스 등 을 프로젝트에 적용하여 개발되었다.</p>
-
-<p>이러한 라이브러리 및 환경 설정은</p>
-
-<p>때문에 이런 환경 설정 부분이 매우 중요한 작업이 되었고, 초기 개발 단계에 이런 과정은 상황에 따라 시간이 소요되기도 한다.</p>
+<p>때문에 이런 환경 설정 부분이 매우 중요한 작업이 되었고, 초기 개발 단계에 이런 과정은 상황에 따라 시간이 소요되기도 합니다.</p>
 
 <p><img src="/assets/posts/250118/example.png" alt="강의에서도 제일 먼저 다루는 환경 설정" /></p>
 
-<p>각종 프레임워크를 학습하기 시작할때도 제일 처음부터 다루는 부분이 바로 환경 설정을 하는 부분이다.</p>
+<p>각종 프레임워크를 학습하기 시작할 때도 먼저 다루는 부분이 바로 환경 설정을 하는 부분일 정도로 초기 환경 세팅은 중요합니다.</p>
 
-<p><img src="/assets/posts/250118/image-1.png" alt="Python을 돌릴 때 자주 경험하는 에러" /></p>
+<p>개발하는 환경에서 이런 환경 세팅은 큰 문제가 되지 않을 수 있습니다.</p>
 
-<p>위 이미지의 예시는 Python 환경을 사용할 때 자주 겪는 에러이다.</p>
+<p>어떻게든 개발이 되도록 개발자가 환경을 맞춰가면 되니까요.</p>
 
-<p>현재 사용중인 Python에 필요한 module이 없어서 발생하는 문제인데, 해당 module이 설치된 가상환경을 실행하거나, <code class="language-plaintext highlighter-rouge">pip install django</code>와 같이 필요한 module을 설치하여 문제를 해결할 수 있다.</p>
+<p>하지만 문제는 다른 사람에게 내가 작성한 프로그램을 전달하는 상황에서 발생합니다.</p>
 
-<p>하나의 모듈만 필요한 경우 <code class="language-plaintext highlighter-rouge">pip install django</code>와 같은 명령어 한번이면 되지만, 여러개의 모듈을 설치해야할 땐 어떻게 해야할까?</p>
+<p>만약 “제가 개발한 환경에서는 이런 라이브러리 들을 설치만 하면 됩니다!”하고 테스트를 맡은 다른 사람에게 전달할 때,
+테스트를 맡은 사람은 “프로그램이 실행되지도 않는데요?”라고 답할 수 있습니다.</p>
 
-<p><img src="/assets/posts/250118/image-2.png" alt="가상환경 내 설치된 pip 모듈이 담긴 requirement.txt" /></p>
-
-<p>python기반의 프로그램은 pip으로 설치한 모듈을 간단히 <code class="language-plaintext highlighter-rouge">pip list freeze &gt; requirements.txt</code>와 같이 하나의 텍스트 파일로 만들어 python 기반의 서비스를 배포할 곳에서 <code class="language-plaintext highlighter-rouge">pip install -r requirements.txt</code>를 통해 다른 환경에서 쉽게 필요한 모듈을 설치할 수 있다.</p>
-
-<p>하지만 이를 배포에 사용하면 정상적으로 모듈들이 설치되지 않는 경우가 발생할 수 있다.</p>
-
-<p>얘를들어 내가 개발한 환경은 Windows 환경이었지만 배포해야하는 환경은 Linux나 Mac인 경우, 이땐 Windows 환경에서 설치가 가능했던 모듈들이 배포 환경에서 설치조차 되지 않을 수가 있다.</p>
+<p>“그냥 다른 개발 환경에도 똑같이 환경 세팅을 적용하면 끝이 아닐까?”라고 생각했다면,</p>
 
 <p><img src="/assets/posts/250118/image-3.png" alt="환경이 다를 경우에 모듈이 설치되지 않는 예" /></p>
 
@@ -66,7 +52,15 @@
 
 <p>하지만 이는 비효율적이고, 그렇게 관리된 환경에 벗어난 또 다른 환경에 대응하지는 못할 것이다.</p>
 
-<h5 id="1-이미지와-컨테이너">1. 이미지와 컨테이너</h5>
+<h5 id="2-환경을-그대로-복사해서-사용할-수는-없을까">2. 환경을 그대로 복사해서 사용할 수는 없을까?</h5>
+
+<p>개발한 어플리케이션 또는 프로그램을 동작시키는 개별 환경을 그대로 복사하여 배포하면 앞서 언급한 문제들이 사라진다.</p>
+
+<p>프로그램이 아니라, 프로그램이 동작하는 환경을 함께 제공하는 방법이다.</p>
+
+<p>이러한 형태로 프로그램을 배포하게 된다면, 어떤 환경에서도 똑같이 프로그램을 실행할 수 있게 된다는 것이다.</p>
+
+<h5 id="3-이미지와-컨테이너">3. 이미지와 컨테이너</h5>
 <p>예를들어 Java의 경우 프로그램 배포시, 격리된 애플리케이션 형태인 <code class="language-plaintext highlighter-rouge">*.jar</code>, <code class="language-plaintext highlighter-rouge">*.war</code>와 같은 형태로 배포하게 됨.</p>
 
 <p>하지만 이러한 방식은 위에서 언급한 문제를 발생시킴.</p>
@@ -90,7 +84,7 @@
 
 <p>Docker 이미지는 단순히 코드가 들어있는 것이 아닌, 해당 코드를 완전히 실행할 수 있는 환경이 구성되어 있음</p>
 
-<h5 id="2-컨테이너와-가상머신의-차이">2. 컨테이너와 가상머신의 차이</h5>
+<h5 id="4-컨테이너와-가상머신의-차이">4. 컨테이너와 가상머신의 차이</h5>
 <p>컨테이너는 전체 운영 시스템을 포함하지 않아, 가상머신 실행보다 가볍고 효율적임</p>
 
 <p>리눅스 커널 - 호스트 운영 체제 커널에서 컨테이너 실행
@@ -104,33 +98,33 @@
 
 <h5 id="3-docker의-설치">3. Docker의 설치</h5>
 <div class="comment-container">
-		<script src="https://giscus.app/client.js"
-        data-repo="mamananama/blog-comment"
-        data-repo-id="R_kgDONmD07w"
-        data-category="Announcements"
-        data-category-id="DIC_kwDONmD0784Clu5b"
-        data-mapping="pathname"
-        data-strict="0"
-        data-reactions-enabled="1"
-        data-emit-metadata="0"
-        data-input-position="top"
-        data-theme="preferred_color_scheme"
-        data-lang="ko"
-        data-loading="lazy"
-        crossorigin="anonymous"
-        async>
-		</script>
-	</div>
-	<div class="">
-		
-		
-
-		<div class="post-navigation">
-		
-		
-		
+			<script src="https://giscus.app/client.js"
+			data-repo="mamananama/blog-comment"
+			data-repo-id="R_kgDONmD07w"
+			data-category="Announcements"
+			data-category-id="DIC_kwDONmD0784Clu5b"
+			data-mapping="pathname"
+			data-strict="0"
+			data-reactions-enabled="1"
+			data-emit-metadata="0"
+			data-input-position="top"
+			data-theme="preferred_color_scheme"
+			data-lang="ko"
+			data-loading="lazy"
+			crossorigin="anonymous"
+			async>
+			</script>
 		</div>
-
+		<div class="">
+			
+			
+	
+			<div class="post-navigation">
+			
+			
+			
+			</div>
+		</div>
 	</div>
 </div>
 <script src="/assets/scripts/jquery-3.7.1.min.js"></script>
