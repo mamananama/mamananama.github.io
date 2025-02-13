@@ -4,6 +4,7 @@
         <div class="post-item-wrap" onclick="location.href='{{ post.url }}'" style="cursor: pointer;">
             <div class="post-item content-effect">
                 <h2>{{ post.title }}</h2>
+                <p>{{post.preview}}</p>
                 <p>{{ post.date | date: "%Y-%m-%d" }}</p>
             </div>
         </div>
