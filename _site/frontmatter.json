@@ -53,7 +53,7 @@
     {
       "title": "posts",
       "path": "[[workspace]]/_posts"
-    }
+    },
   ],
   "frontMatter.dashboard.openOnStart": true
 }

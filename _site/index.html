@@ -3,54 +3,64 @@
 	<head>
 		<meta charset="UTF-8" />
 		<link rel="stylesheet" href="/assets/css/styles.css" />
-
-		<title>Tech Blog</title>
+		<title>Home</title>
+		<script>
+			document.addEventListener("DOMContentLoaded", function () {
+				requestAnimationFrame(function () {
+					document.body.style.visibility = "visible";
+				});
+			});
+		</script>
+		<style>
+			body {
+				visibility: hidden;
+			}
+			.vertical-menu {
+				will-change: transform;
+			}
+		</style>
 	</head>
 
 	<body>
 		<div class="page">
 			<div class="main">
 				<div class="landing-main">
-	<div class="landing-wrap">
-		<div class="landing-title">Tech Blog_</div>
-		<div class="l1anding-desc">...</div>
+					<header class="horizontal-menu">
+    <div class="menu-toggle">
+        <span></span>
+        <span></span>
+        <span></span>
+    </div>
+    <div class="breadcrumb">
+        <span class="breadcrumb-separator">/</span>
+        <a class="breadcrumb-permalink" href="/">Home</a>
+        
+        
+        
+        <span class="breadcrumb-separator">/</span>
+    </div>
+</header>
+					<div class="content-wrap"> <div class="post-list">
+	
+	<div class="post-item-wrap" onclick="location.href='/categories/Docker/docker-introduction'" style="cursor: pointer;">	
+		<div class="post-item content-effect">
+			<h3 class="post-item-title"><a>Container 알아보기</a></h3>
+			<div class="post-desc">Docker는 리눅스의 Container 기술을 사용하여 프로그램을 배포하는 기술이다. 리눅스의 Container 기술은 리눅스 커널의 기능으로 프로그램을 실행하는 환경을 구성하는 기술이다. Container는 하나의 독립된 리눅스 시스템으로, 단일 컨트롤 호스트에서 가상화 머신을 사용하는 것과 비교하여...</div>
+			<div class="post-date">
+				   2025-05-14 
+			</div>
+		</div>
 	</div>
-	<div class="content-wrap">
-		
-		<div class="menu-wrap" onclick="location.href='/blog/test/test2.html'" style="cursor: pointer;">	
-			<div class="menu-content-item-wrap content-effect">
-				<h3 class="post-item-title"><a>test2</a></h3>
-				<div class="post-desc"></div>
-				<div class="post-date">
-					   2025-01-07 
+	
+</div> </div>
 				</div>
-			</div>
-		</div>
-		
-		<div class="menu-wrap" onclick="location.href='/blog/test/test.html'" style="cursor: pointer;">	
-			<div class="menu-content-item-wrap content-effect">
-				<h3 class="post-item-title"><a>test</a></h3>
-				<div class="post-desc"></div>
-				<div class="post-date">
-					   2025-01-07 
-				</div>
-			</div>
-		</div>
-		
-		<div class="menu-wrap" onclick="location.href='/blog/ultralytics/ultralytics-%EC%8B%9C%EC%9E%91%ED%95%98%EA%B8%B0.html'" style="cursor: pointer;">	
-			<div class="menu-content-item-wrap content-effect">
-				<h3 class="post-item-title"><a>Ultralytics 시작하기</a></h3>
-				<div class="post-desc">Ultralytics를 위한 가상환경의 설치와 Utralytics를 설치하는 과정입니다.</div>
-				<div class="post-date">
-					   2024-07-27 
-				</div>
-			</div>
-		</div>
-		
-	</div>
-</div>
+				<link rel="stylesheet" href="/assets/tipuesearch/css/tipuesearch.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="/assets/tipuesearch/tipuesearch_content.js"></script>
+<script src="/assets/tipuesearch/tipuesearch_set.js"></script>
+<script src="/assets/tipuesearch/tipuesearch.min.js"></script>
 
-				<nav class="vertical-menu">
+<nav class="vertical-menu">
 	<div class="profile-container">
 		
 		<img src="https://avatars.githubusercontent.com/u/114140050?v=4" alt="profile image" class="profile-image">
@@ -73,9 +83,19 @@
 			
 		</div>
 	</div>
-	<hr width="80%" color="#d6d6d6">
-	
+	<hr width="80%" color="#d6d6d6">	
+
 	<div class="vertical-menu-container">
+		<div class="search-wrap">
+			<form action="/search">
+				<div class="tipue_search_left">
+					<img src="/assets/tipuesearch/search.png" class="tipue_search_icon">
+				</div>
+				<div class="tipue_search_right">
+					<input type="text" name="q" id="tipue_search_input" pattern=".{1,}" title="At least 1 characters" required></div>
+				<div style="clear: both;"></div>
+			 </form>
+		</div>
 		
 		<div class="vertical-menu-title" onclick="location.href='/'"  class="current" >Home</div>
 		
@@ -89,4 +109,70 @@
 			</div>
 		</div>
 	</body>
+	<script>
+		const menuToggle = document.querySelector(".menu-toggle");
+		const verticalMenu = document.querySelector(".vertical-menu");
+		const landingMain = document.querySelector(".landing-main");
+
+		menuToggle.addEventListener("click", function (e) {
+			e.stopPropagation();
+			verticalMenu.classList.toggle("active");
+			menuToggle.classList.toggle("active");
+		});
+
+		landingMain.addEventListener("click", function () {
+			if (verticalMenu.classList.contains("active")) {
+				verticalMenu.classList.remove("active");
+				menuToggle.classList.remove("active");
+			}
+		});
+
+		// 페이지 전환 시 깜빡임 방지
+		document.addEventListener("click", function (e) {
+			if (e.target.tagName === "A" && e.target.href && e.target.href.startsWith(window.location.origin)) {
+				e.preventDefault();
+				const targetUrl = e.target.href;
+
+				// 현재 페이지의 상태 저장
+				const currentState = {
+					verticalMenu: verticalMenu.classList.contains("active"),
+					menuToggle: menuToggle.classList.contains("active"),
+					horizontalMenu: document.querySelector(".horizontal-menu").innerHTML,
+				};
+
+				// 새 페이지 로드
+				fetch(targetUrl)
+					.then(response => response.text())
+					.then(html => {
+						const parser = new DOMParser();
+						const doc = parser.parseFromString(html, "text/html");
+						const newContent = doc.querySelector(".content-wrap").innerHTML;
+						const newHorizontalMenu = doc.querySelector(".horizontal-menu").innerHTML;
+
+						// 컨텐츠와 horizontal-menu 업데이트
+						document.querySelector(".content-wrap").innerHTML = newContent;
+						document.querySelector(".horizontal-menu").innerHTML = newHorizontalMenu;
+
+						// URL 업데이트
+						window.history.pushState({}, "", targetUrl);
+
+						// 이전 상태 복원
+						if (currentState.verticalMenu) {
+							verticalMenu.classList.add("active");
+							menuToggle.classList.add("active");
+						}
+
+						// horizontal-menu 이벤트 리스너 재설정
+						const newMenuToggle = document.querySelector(".menu-toggle");
+						if (newMenuToggle) {
+							newMenuToggle.addEventListener("click", function (e) {
+								e.stopPropagation();
+								verticalMenu.classList.toggle("active");
+								newMenuToggle.classList.toggle("active");
+							});
+						}
+					});
+			}
+		});
+	</script>
 </html>

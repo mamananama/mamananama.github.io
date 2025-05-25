@@ -3,7 +3,7 @@
 	<head>
 		<meta charset="UTF-8" />
 		<link rel="stylesheet" href="/assets/css/styles.css" />
-		<title>Categories</title>
+		<title>Container 알아보기</title>
 		<script>
 			document.addEventListener("DOMContentLoaded", function () {
 				requestAnimationFrame(function () {
@@ -45,31 +45,95 @@
         </a>
         
         
+        
+        
+        <span class="breadcrumb-separator">/</span>
+        <a class="breadcrumb-permalink" href="/categories/Docker">
+            Docker
+        </a>
+        
+        
+        
+        
+        <span class="breadcrumb-separator">/</span>
+        <a class="breadcrumb-permalink" href="/categories/Docker/docker-introduction">
+            docker-introduction
+        </a>
+        
+        
         <span class="breadcrumb-separator">/</span>
     </div>
 </header>
-					<div class="content-wrap"> <div class="post-list">
-	
-	
-	<div class="category-wrap content-effect" onclick="location.href='/categories/Docker'">
-		<div class="category-item-wrap">
-			<div class="category-title">
-				<h2 class="category-name">Docker</h2>
-				<p class="category-recent-post">1개의 포스트</p>
-			</div>
-			<div class="category-recent-post-list">
-				
-				<div class="category-recent-post-item">
-					<div class="category-recent-post-item-bullet"></div>
-					<div class="category-recent-post-item-title">Container 알아보기</div>
-					<div class="category-recent-post-item-date">2025-05-14</div>
-				</div>
-				
-			</div>
+					<div class="content-wrap"> <link rel="stylesheet" href="/assets/css/syntax.css" />
+<div class="post">
+	<h1>Container 알아보기</h1>
+	<div class="post-date">2025년 05월 14일</div>
+	<div class="preview-warp">Docker는 리눅스의 Container 기술을 사용하여 프로그램을 배포하는 기술이다. <br/>
+리눅스의 Container 기술은 리눅스 커널의 기능으로 프로그램을 실행하는 환경을 구성하는 기술이다. <br/>
+Container는 하나의 독립된 리눅스 시스템으로, 단일 컨트롤 호스트에서 가상화 머신을 사용하는 것과 비교하여 더 가볍고 빠르게 사용할 수 있도록 하는 기술이다. <br/>
+Docker는 이런 Container 기술을 더 쉽게 사용할 수 있도록 만든 프로그램이다.
+</div>
+	<div class="horizon-bar"></div>
+	<div class="post-body">
+		<h2 id="프로그램-배포에서-발생하는-문제">프로그램 배포에서 발생하는 문제</h2>
+
+<p>본격적인 Docker 및 Container 기술을 사용하기 이전에, 프로그램 배포에서 발생하는 문제에 대해 알아보자.</p>
+
+<p>개발 환경에서 개발한 프로그램을 실제 서비스 환경으로 배포하는 경우, 프로그램이 실행되지 않는 문제가 발생한다.</p>
+
+<p>개발 환경에 설치한 라이브러리가 서비스 환경에 설치되어 있지 않다던가, OS가 다르다던가, 환경변수가 다르다던가, 혹은 설치된 JVM 버전이 맞지 않다던가…</p>
+
+<p>이런 문제를 해결하기 위해 개발 환경에서 사용하는 프로그램을 모두 설치하고, 환경변수를 설정하고, 라이브러리를 설치하고, 모든 것이 완료되면 배포한다.</p>
+
+<p><img src="/assets/posts/250512/no.png" alt="개발 프로그램만 배포했을 경우 필요한 환경이 갖춰지지 않아 배포 환경에서 실행이 되지 않을 수 있다." width="70%" style="padding: 16px" /></p>
+
+<p>하지만 이는 매우 비효율적이며 많은 시간이 소비되는 번거로운 작업이다.</p>
+
+<h2 id="container를-사용한-배포">Container를 사용한 배포</h2>
+
+<p>이런 문제는 Container Image를 통하여 배포를 하면 쉽게 해결할 수 있다.</p>
+
+<p><img src="/assets/posts/250512/yes.png" alt="Container Image를 사용하여 배포하면 프로그램 실행에 필요한 환경을 먼저 구성한 채 배포할 수 있다." width="70%" style="padding: 16px" /></p>
+
+<p>프로그램의 실행에 필요한 환경을 미리 구성하여 Container Image로 저장하면, 프로그램을 배포할 때 미리 구성된 환경을 사용하여 프로그램을 실행할 수 있다.</p>
+
+<p>이렇게 Container Image만 관리하여 프로그램을 배포하면 개발 환경 또는 운영 환경의 환경이 다르더라도 프로그램이 정상적으로 실행될 수 있도록 관리할 수 있다.</p>
+
+<h2 id="그럼-container는-어떻게-구성되어-있을까">그럼 Container는 어떻게 구성되어 있을까?</h2>
+
+<hr />
+<h2 id="참고-링크">참고 링크</h2>
+
+<p><a href="https://ko.wikipedia.org/wiki/LXC" id="url">LXC(Linux Containers) 위키피디아 링크</a></p>
+
+<p><a href="https://linuxcontainers.org/" id="url">Linux Containers 공식 홈페이지</a></p>
+
+<p><a href="https://www.udemy.com/course/docker-java-developer/" id="url">[Udemy] Docker - Java 개발자를 위한 완벽 실습 과정</a></p>
+<div class="comment-container">
+			<script
+				src="https://giscus.app/client.js"
+				data-repo="mamananama/blog-comment"
+				data-repo-id="R_kgDONmD07w"
+				data-category="Announcements"
+				data-category-id="DIC_kwDONmD0784Clu5b"
+				data-mapping="pathname"
+				data-strict="0"
+				data-reactions-enabled="1"
+				data-emit-metadata="0"
+				data-input-position="top"
+				data-theme="preferred_color_scheme"
+				data-lang="ko"
+				data-loading="lazy"
+				crossorigin="anonymous"
+				async></script>
+		</div>
+		<div class="post-navigation">
+			 
 		</div>
 	</div>
-	
 </div>
+<script src="/assets/scripts/jquery-3.7.1.min.js"></script>
+<script src="/assets/scripts/imageOrigin.js"></script>
  </div>
 				</div>
 				<link rel="stylesheet" href="/assets/tipuesearch/css/tipuesearch.css">

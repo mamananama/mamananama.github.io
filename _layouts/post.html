@@ -2,47 +2,50 @@
 layout: default
 ---
 
-<head>
-	<link rel="stylesheet" href="{{site.baseurl}}/assets/css/syntax.css" />
-	<link rel="stylesheet" href="{{site.baseurl}}/assets/css/post.css" />
-</head>
-
+<link rel="stylesheet" href="/assets/css/syntax.css" />
 <div class="post">
 	<h1>{{ page.title }}</h1>
 	<div class="post-date">{{ page.date | date: "%Y년 %m월 %d일" }}</div>
-	<div style="text-align: center;">
-		<a href="https://hits.seeyoufarm.com/api/count/incr/badge.svg?url={{site.url | remove_first: 'https://' | remove_first: 'http://' }}/{{ page.url | remove_first: '/' | replace: '/', '-' }}" target="_blank">
-		  <img src="{{ site.url | remove_first: 'https://' | remove_first: 'http://' }}/{{ page.url | remove_first: '/' | replace: '/', '-' }}.svg" />
-		</a>
-	  </div> 
-	{{content}} 
-	{%- comment -%} 
-	{% if page.tags %}
-	<small>
-		tags:
-		<em>{{ page.tags | join: "</em>
-		-
-		<em>" }}</em>
-	</small>
-	{% endif %} 
-	{%- endcomment -%}
-	<div class="comment-container">
-		<script src="https://giscus.app/client.js"
-        data-repo="mamananama/blog-comment"
-        data-repo-id="R_kgDONmD07w"
-        data-category="[ENTER CATEGORY NAME HERE]"
-        data-category-id="[ENTER CATEGORY ID HERE]"
-        data-mapping="pathname"
-        data-strict="0"
-        data-reactions-enabled="1"
-        data-emit-metadata="0"
-        data-input-position="top"
-        data-theme="preferred_color_scheme"
-        data-lang="ko"
-        data-loading="lazy"
-        crossorigin="anonymous"
-        async>
-		</script>
+	<div class="preview-warp">{{page.preview}}</div>
+	<div class="horizon-bar"></div>
+	<div class="post-body">
+		{{content}} {%- comment -%} {% if page.tags %}
+		<small>
+			tags:
+			<em>{{ page.tags | join: "</em>
+			-
+			<em>" }}</em>
+		</small>
+		{% endif %} {%- endcomment -%}
+		<div class="comment-container">
+			<script
+				src="https://giscus.app/client.js"
+				data-repo="mamananama/blog-comment"
+				data-repo-id="R_kgDONmD07w"
+				data-category="Announcements"
+				data-category-id="DIC_kwDONmD0784Clu5b"
+				data-mapping="pathname"
+				data-strict="0"
+				data-reactions-enabled="1"
+				data-emit-metadata="0"
+				data-input-position="top"
+				data-theme="preferred_color_scheme"
+				data-lang="ko"
+				data-loading="lazy"
+				crossorigin="anonymous"
+				async></script>
+		</div>
+		<div class="post-navigation">
+			{% if prev_index < posts.size %}
+			<div class="prev-post">
+				<a href="{{ posts[prev_index].url }}">« {{ posts[prev_index].title }}</a>
+			</div>
+			{% endif %} {% if next_index >= 0 %}
+			<div class="next-post">
+				<a href="{{ posts[next_index].url }}">{{ posts[next_index].title }} »</a>
+			</div>
+			{% endif %}
+		</div>
 	</div>
 </div>
 <script src="/assets/scripts/jquery-3.7.1.min.js"></script>

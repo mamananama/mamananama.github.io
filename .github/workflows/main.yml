@@ -1,0 +1,76 @@
+name: Create Category Pages
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - '_posts/**'
+
+jobs:
+  create-category-pages:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Create SSH Key
+        run: | # access key를 actions 내부 워크스페이스에 pem파일로 저장하고 권한을 확보
+          echo "${{ secrets.REPO_KEY }}" > ~/private-key.pem
+          chmod 600 ~/private-key.pem
+      - name: Create SSH directory # .ssh 디렉토리 생성
+        run: | 
+          mkdir -p ~/.ssh
+      - name: Add known host # known host에 해당 키를 추가
+        run: |
+          ssh-keyscan ${{ secrets.REMOTE_HOST }} >> ~/.ssh/known_hosts
+      
+
+      - name: Set up Git
+        run: |
+          git config --global user.name 'github-actions[bot]'
+          git config --global user.email 'github-actions[bot]@users.noreply.github.com'
+
+      - name: Create category pages
+        run: |
+          # 카테고리 디렉토리 생성
+          mkdir -p category
+
+          # _posts 디렉토리의 모든 마크다운 파일 처리
+          for file in _posts/*.md; do
+            # 파일에서 카테고리 추출
+            categories=$(grep -oP '^categories:\s*\K\[.*\]' "$file" | tr -d '[]"' | tr ',' '\n' | sed 's/^[[:space:]]*//' | sed 's/[[:space:]]*$//')
+
+            
+            # 각 카테고리에 대해 처리
+            echo "$categories" | while read -r category; do
+              if [ ! -z "$category" ]; then
+                # 카테고리 페이지 파일 경로
+                category_file="categories/${category}.html"
+                
+                # 카테고리 페이지가 없으면 생성
+                if [ ! -f "$category_file" ]; then
+                  echo "---" > "$category_file"
+                  echo "layout: default" >> "$category_file"
+                  echo "title: $category" >> "$category_file"
+                  echo "permalink: categories/$category/" >> "$category_file"
+                  echo "---" >> "$category_file"
+                  echo "{% include category_post_list.html %}" >> "$category_file"
+                  
+                  echo "Created category page for $category"
+                fi
+              fi
+            done
+          done
+
+      - name: Commit changes
+        run: |
+          git add categories/
+          git commit -m "Automatically create category pages"
+
+      - name: Push changes
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          git remote set-url origin https://x-access-token:${GITHUB_TOKEN}@github.com/${GITHUB_REPOSITORY}.git
+          git push origin main

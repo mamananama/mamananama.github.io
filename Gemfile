@@ -26,7 +26,7 @@ platforms :mingw, :x64_mingw, :mswin, :jruby do
 end
 
 # Performance-booster for watching directories on Windows
-gem "wdm", "~> 0.1.1", :platforms => [:mingw, :x64_mingw, :mswin]
+gem "wdm", "~> 0.1", :platforms => [:mingw, :x64_mingw, :mswin]
 
 # Lock `http_parser.rb` gem to `v0.6.x` on JRuby builds since newer versions of the gem
 # do not have a Java counterpart.
@@ -37,3 +37,10 @@ gem "faraday-retry", "~> 2.2"
 gem "webrick", "~> 1.8"
 
 gem "rouge"
+
+gem "kramdown-parser-gfm"
+gem "csv", "~> 3.3"
+
+gem "logger", "~> 1.7"
+
+gem "base64", "~> 0.2.0"
