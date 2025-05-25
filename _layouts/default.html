@@ -4,21 +4,98 @@
 		<meta charset="UTF-8" />
 		<link rel="stylesheet" href="/assets/css/styles.css" />
 		<title>{{page.title}}</title>
+		<script>
+			document.addEventListener("DOMContentLoaded", function () {
+				requestAnimationFrame(function () {
+					document.body.style.visibility = "visible";
+				});
+			});
+		</script>
+		<style>
+			body {
+				visibility: hidden;
+			}
+			.vertical-menu {
+				will-change: transform;
+			}
+		</style>
 	</head>
-	
+
 	<body>
 		<div class="page">
 			<div class="main">
 				<div class="landing-main">
-					<header class="horizontal-menu">
-						<p>{{page.title}}</h1>
-					</header>
-					<div class="content-wrap">
-						{{content}}
-					</div>
+					{% include horizontal_menu.html %}
+					<div class="content-wrap"> {{content}} </div>
 				</div>
 				{% include vertical_menu.html %}
 			</div>
 		</div>
 	</body>
+	<script>
+		const menuToggle = document.querySelector(".menu-toggle");
+		const verticalMenu = document.querySelector(".vertical-menu");
+		const landingMain = document.querySelector(".landing-main");
+
+		menuToggle.addEventListener("click", function (e) {
+			e.stopPropagation();
+			verticalMenu.classList.toggle("active");
+			menuToggle.classList.toggle("active");
+		});
+
+		landingMain.addEventListener("click", function () {
+			if (verticalMenu.classList.contains("active")) {
+				verticalMenu.classList.remove("active");
+				menuToggle.classList.remove("active");
+			}
+		});
+
+		// 페이지 전환 시 깜빡임 방지
+		document.addEventListener("click", function (e) {
+			if (e.target.tagName === "A" && e.target.href && e.target.href.startsWith(window.location.origin)) {
+				e.preventDefault();
+				const targetUrl = e.target.href;
+
+				// 현재 페이지의 상태 저장
+				const currentState = {
+					verticalMenu: verticalMenu.classList.contains("active"),
+					menuToggle: menuToggle.classList.contains("active"),
+					horizontalMenu: document.querySelector(".horizontal-menu").innerHTML,
+				};
+
+				// 새 페이지 로드
+				fetch(targetUrl)
+					.then(response => response.text())
+					.then(html => {
+						const parser = new DOMParser();
+						const doc = parser.parseFromString(html, "text/html");
+						const newContent = doc.querySelector(".content-wrap").innerHTML;
+						const newHorizontalMenu = doc.querySelector(".horizontal-menu").innerHTML;
+
+						// 컨텐츠와 horizontal-menu 업데이트
+						document.querySelector(".content-wrap").innerHTML = newContent;
+						document.querySelector(".horizontal-menu").innerHTML = newHorizontalMenu;
+
+						// URL 업데이트
+						window.history.pushState({}, "", targetUrl);
+
+						// 이전 상태 복원
+						if (currentState.verticalMenu) {
+							verticalMenu.classList.add("active");
+							menuToggle.classList.add("active");
+						}
+
+						// horizontal-menu 이벤트 리스너 재설정
+						const newMenuToggle = document.querySelector(".menu-toggle");
+						if (newMenuToggle) {
+							newMenuToggle.addEventListener("click", function (e) {
+								e.stopPropagation();
+								verticalMenu.classList.toggle("active");
+								newMenuToggle.classList.toggle("active");
+							});
+						}
+					});
+			}
+		});
+	</script>
 </html>

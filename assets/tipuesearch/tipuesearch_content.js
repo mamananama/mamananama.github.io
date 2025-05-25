@@ -69,15 +69,12 @@ layout: null
   {%- endfor -%}
 {%- endfor -%}
 var tipuesearch = {"pages": [
-{%- for document in index -%}
-  {%- assign tags = document.tags | uniq -%}
-  {%- assign categories = document.categories | uniq -%}
-  {%- assign taxonomies = tags | concat: categories | uniq -%}
+{%- for item in index -%}
   {
-    "title": {{ document.title | smartify | strip_html | normalize_whitespace | jsonify }},
-    "text": {{ document.content | strip_html | normalize_whitespace | jsonify }},
-    "tags": {{ taxonomies | join: " " | normalize_whitespace | jsonify }},
-    "url": {{ document.url | relative_url | jsonify }}
+    "title": {{ item.title | jsonify }},
+    "text": {{ item.content | strip_html | strip_newlines | jsonify }},
+    "tags": {{ item.tags | join: ' ' | jsonify }},
+    "url": {{ item.url | relative_url | normalize_encoding | jsonify }}
   }{%- unless forloop.last -%},{%- endunless -%}
 {%- endfor -%}
 ]};

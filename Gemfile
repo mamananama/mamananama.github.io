@@ -39,3 +39,8 @@ gem "webrick", "~> 1.8"
 gem "rouge"
 
 gem "kramdown-parser-gfm"
+gem "csv", "~> 3.3"
+
+gem "logger", "~> 1.7"
+
+gem "base64", "~> 0.2.0"

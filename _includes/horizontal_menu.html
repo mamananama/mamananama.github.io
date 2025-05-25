@@ -1,0 +1,28 @@
+<header class="horizontal-menu">
+    <div class="menu-toggle">
+        <span></span>
+        <span></span>
+        <span></span>
+    </div>
+    <div class="breadcrumb">
+        <span class="breadcrumb-separator">/</span>
+        <a class="breadcrumb-permalink" href="/">Home</a>
+        {% assign paths = page.permalink | split: '/' %}
+        {% assign current_path = '' %}
+        {% for path in paths %}
+        {% assign current_path = current_path | append: '/' | append: path %}
+        {% if forloop.last %}
+        <span class="breadcrumb-separator">/</span>
+        <a class="breadcrumb-permalink" href="{{ current_path }}">
+            {{ path }}
+        </a>
+        {% else %}
+        <span class="breadcrumb-separator">/</span>
+        <a class="breadcrumb-permalink" href="{{ current_path }}">
+            {{ path }}
+        </a>
+        {% endif %}
+        {% endfor %}
+        <span class="breadcrumb-separator">/</span>
+    </div>
+</header>

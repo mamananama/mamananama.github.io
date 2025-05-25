@@ -3,31 +3,76 @@
 	<head>
 		<meta charset="UTF-8" />
 		<link rel="stylesheet" href="/assets/css/styles.css" />
-		<title>docker</title>
+		<title>Docker</title>
+		<script>
+			document.addEventListener("DOMContentLoaded", function () {
+				requestAnimationFrame(function () {
+					document.body.style.visibility = "visible";
+				});
+			});
+		</script>
+		<style>
+			body {
+				visibility: hidden;
+			}
+			.vertical-menu {
+				will-change: transform;
+			}
+		</style>
 	</head>
-	
+
 	<body>
 		<div class="page">
 			<div class="main">
 				<div class="landing-main">
 					<header class="horizontal-menu">
-						<p>docker</h1>
-					</header>
-					<div class="content-wrap">
-						<div class="post-list">
-    
-    
-        <div class="post-item-wrap" onclick="location.href='/categories/docker/docker-%EC%8B%9C%EC%9E%91%ED%95%98%EA%B8%B0.html'" style="cursor: pointer;">
-            <div class="post-item content-effect">
-                <h2>Docker 알아보기</h2>
-                <p>Docker가 무엇이고 왜 사용하는 것일까?</p>
-                <p>2025-01-18</p>
-            </div>
-        </div>
-    
+    <div class="menu-toggle">
+        <span></span>
+        <span></span>
+        <span></span>
+    </div>
+    <div class="breadcrumb">
+        <span class="breadcrumb-separator">/</span>
+        <a class="breadcrumb-permalink" href="/">Home</a>
+        
+        
+        
+        
+        
+        <span class="breadcrumb-separator">/</span>
+        <a class="breadcrumb-permalink" href="/categories">
+            categories
+        </a>
+        
+        
+        
+        
+        <span class="breadcrumb-separator">/</span>
+        <a class="breadcrumb-permalink" href="/categories/Docker">
+            Docker
+        </a>
+        
+        
+        <span class="breadcrumb-separator">/</span>
+    </div>
+</header>
+					<div class="content-wrap"> <div class="post-list">
+	 
+	<div class="post-item-wrap" onclick="location.href='/categories/Docker/docker-introduction'" style="cursor: pointer">
+		<div class="post-item content-effect">
+			<h2>Container 알아보기</h2>
+			<p>Docker는 리눅스의 Container 기술을 사용하여 프로그램을 배포하는 기술이다. <br/>
+리눅스의 Container 기술은 리눅스 커널의 기능으로 프로그램을 실행하는 환경을 구성하는 기술이다. <br/>
+Container는 하나의 독립된 리눅스 시스템으로, 단일 컨트롤 호스트에서 가상화 머신을 사용하는 것과 비교하여 더 가볍고 빠르게 사용할 수 있도록 하는 기술이다. <br/>
+Docker는 이런 Container 기술을 더 쉽게 사용할 수 있도록 만든 프로그램이다.
+</p>
+			<p>2025-05-14</p>
+		</div>
+	</div>
+	
 </div>
 
-					</div>
+ </div>
 				</div>
 				<link rel="stylesheet" href="/assets/tipuesearch/css/tipuesearch.css">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
@@ -84,4 +129,70 @@
 			</div>
 		</div>
 	</body>
+	<script>
+		const menuToggle = document.querySelector(".menu-toggle");
+		const verticalMenu = document.querySelector(".vertical-menu");
+		const landingMain = document.querySelector(".landing-main");
+
+		menuToggle.addEventListener("click", function (e) {
+			e.stopPropagation();
+			verticalMenu.classList.toggle("active");
+			menuToggle.classList.toggle("active");
+		});
+
+		landingMain.addEventListener("click", function () {
+			if (verticalMenu.classList.contains("active")) {
+				verticalMenu.classList.remove("active");
+				menuToggle.classList.remove("active");
+			}
+		});
+
+		// 페이지 전환 시 깜빡임 방지
+		document.addEventListener("click", function (e) {
+			if (e.target.tagName === "A" && e.target.href && e.target.href.startsWith(window.location.origin)) {
+				e.preventDefault();
+				const targetUrl = e.target.href;
+
+				// 현재 페이지의 상태 저장
+				const currentState = {
+					verticalMenu: verticalMenu.classList.contains("active"),
+					menuToggle: menuToggle.classList.contains("active"),
+					horizontalMenu: document.querySelector(".horizontal-menu").innerHTML,
+				};
+
+				// 새 페이지 로드
+				fetch(targetUrl)
+					.then(response => response.text())
+					.then(html => {
+						const parser = new DOMParser();
+						const doc = parser.parseFromString(html, "text/html");
+						const newContent = doc.querySelector(".content-wrap").innerHTML;
+						const newHorizontalMenu = doc.querySelector(".horizontal-menu").innerHTML;
+
+						// 컨텐츠와 horizontal-menu 업데이트
+						document.querySelector(".content-wrap").innerHTML = newContent;
+						document.querySelector(".horizontal-menu").innerHTML = newHorizontalMenu;
+
+						// URL 업데이트
+						window.history.pushState({}, "", targetUrl);
+
+						// 이전 상태 복원
+						if (currentState.verticalMenu) {
+							verticalMenu.classList.add("active");
+							menuToggle.classList.add("active");
+						}
+
+						// horizontal-menu 이벤트 리스너 재설정
+						const newMenuToggle = document.querySelector(".menu-toggle");
+						if (newMenuToggle) {
+							newMenuToggle.addEventListener("click", function (e) {
+								e.stopPropagation();
+								verticalMenu.classList.toggle("active");
+								newMenuToggle.classList.toggle("active");
+							});
+						}
+					});
+			}
+		});
+	</script>
 </html>

@@ -30,7 +30,7 @@ github_username: mamananama
 plugins:
     - jekyll-feed
 
-permalink: "categories/:categories/:title:output_ext"
+permalink: "categories/:categories/:slug:output_ext"
 paginate: 10
 pagenate_path: "categories/:categories"
 # Exclude from processing.
@@ -73,10 +73,14 @@ kramdown:
             bold_every: 5
 
 tipue_search:
-  include:
-    pages: false
-    collections: [posts]
-  exclude:
-    files: [search.html, index.html, tags.html, "*.html", "*.md", "*.css", "*.scss", "*.js", "*.json", "*.xml", "*.rb", "assets/*", "_layouts/*"]
-    categories: []
-    tags: []
+    include:
+        pages: false
+        collections: [posts]
+    exclude:
+        files: [search.html, index.html, tags.html, "*.md", "*.css", "*.scss", "*.js", "*.json", "*.xml", "*.rb", "assets/*", "_layouts/*"]
+        categories: []
+        tags: []
+
+# 한글 URL 처리를 위한 설정
+encoding: UTF-8
+permalink_style: pretty

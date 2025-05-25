@@ -1,30 +1,44 @@
 ---
 layout: default
+permalink: search
 title: Search
+search: ""
 ---
+
+{% if page.getvar == 'q' %}
+  {% assign search_query = page.q | default: '' %}
+  {% assign page.search = search_query %}
+{% endif %}
 
 <h1>Search Results</h1>
 
 <link rel="stylesheet" href="{{ "/assets/tipuesearch/css/tipuesearch.css" | relative_url }}">
+
+<form action="{{ page.url | relative_url }}">
+    <div class="tipue_search_left"><img src="{{ "/assets/tipuesearch/search.png" | relative_url }}" class="tipue_search_icon" alt="Search"></div>
+    <div class="tipue_search_right"><input type="text" name="q" id="tipue_search_input" pattern=".{3,}" title="At least 3 characters" required></div>
+    <div style="clear: both;"></div>
+</form>
+
+<div id="tipue_search_content"></div>
+
+
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 <script src="{{ "/assets/tipuesearch/tipuesearch_content.js" | relative_url }}"></script>
 <script src="{{ "/assets/tipuesearch/tipuesearch_set.js" | relative_url }}"></script>
 <script src="{{ "/assets/tipuesearch/tipuesearch.min.js" | relative_url }}"></script>
-
-<form action="{{ page.url | relative_url }}">
-    <div class="tipue_search_left"><img src="{{ "/assets/tipuesearch/search.png" | relative_url }}" class="tipue_search_icon"></div>
-    <div class="tipue_search_right"><input type="text" name="q" id="tipue_search_input" pattern=".{3,}" title="At least 3 characters" required></div>
-    <div style="clear: both;"></div>
-  </form>
-  
-<div id="tipue_search_content"></div>
-
 <script>
 $(document).ready(function() {
     $('#tipue_search_input').tipuesearch({
-    'wholeWords': false,
-    'showTime': false,
-    'minimumLength': 1
+        'wholeWords': false,
+        'showTime': false,
+        'minimumLength': 1,
+        'showURL': false,
+        'mode': 'static',
+        'newWindow': false,
+        'highlightTerms': true,
+        'showContext': true,
+        'descriptiveWords': 50
     });
 });
 </script>
