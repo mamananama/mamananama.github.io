@@ -21,9 +21,9 @@ jobs:
       - name: Create SSH directory # .ssh 디렉토리 생성
         run: | 
           mkdir -p ~/.ssh
-      - name: Add known host # known host에 해당 키를 추가
-        run: |
-          ssh-keyscan ${{ secrets.REMOTE_HOST }} >> ~/.ssh/known_hosts
+      # - name: Add known host # known host에 해당 키를 추가
+      #   run: |
+      #     ssh-keyscan ${{ secrets.REMOTE_HOST }} >> ~/.ssh/known_hosts
       
 
       - name: Set up Git
