@@ -7,13 +7,13 @@ ul { list-style: none; }
 
 a { text-decoration: none; color: inherit; }
 
-body { font-family: 'SUITE-Regular'; display: flex; flex-direction: row; justify-content: center; width: 100%; height: 100%; overflow-x: hidden; }
+body { font-family: 'SUITE-Regular'; display: flex; flex-direction: row; justify-content: center; width: 100%; height: 100%; overflow-x: hidden; -webkit-text-size-adjust: 100%; -ms-text-size-adjust: 100%; -moz-osx-font-smoothing: grayscale; -webkit-font-smoothing: antialiased; touch-action: manipulation; }
 
 .horizontal-menu { width: 100%; height: 48px; box-sizing: border-box; display: flex; justify-content: start; align-items: center; gap: 20px; padding-left: 20px; background-color: #868686; box-shadow: 0 4px 10px 0 #d0d0d0; margin-bottom: 20px; flex-shrink: 0; flex-grow: -1; }
 
 .horizontal-menu * { font-size: 24px; font-weight: bold; color: #ffffff; }
 
-.breadcrumb { padding-left: 50px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.breadcrumb { padding-right: 50px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
 
 .breadcrumb-permalink:hover { text-decoration: underline; text-underline-offset: 4px; text-decoration-thickness: 2px; transition: all 0.3s ease-in-out; }
 
