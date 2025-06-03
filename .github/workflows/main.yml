@@ -21,9 +21,9 @@ jobs:
       - name: Create SSH directory # .ssh 디렉토리 생성
         run: | 
           mkdir -p ~/.ssh
-      - name: Add known host # known host에 해당 키를 추가
-        run: |
-          ssh-keyscan ${{ secrets.REMOTE_HOST }} >> ~/.ssh/known_hosts
+      # - name: Add known host # known host에 해당 키를 추가
+      #   run: |
+      #     ssh-keyscan ${{ secrets.REMOTE_HOST }} >> ~/.ssh/known_hosts
       
 
       - name: Set up Git
@@ -64,11 +64,19 @@ jobs:
           done
 
       - name: Commit changes
+        id: commit
         run: |
           git add categories/
-          git commit -m "Automatically create category pages"
+          if ! git diff --quiet --staged; then
+            git commit -m "카테고리 페이지 자동 생성"
+            echo "changes_committed=true" >> $GITHUB_OUTPUT
+          else
+            echo "카테고리 페이지 수정 사항이 없어 넘어갑니다"
+            echo "changes_committed=false" >> $GITHUB_OUTPUT
+          fi
 
       - name: Push changes
+        if: steps.commit.outputs.changes_committed == 'true'
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
