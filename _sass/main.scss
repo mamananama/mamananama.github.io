@@ -69,6 +69,12 @@ body {
     color: #ffffff;
 }
 
+.breadcrumb{
+    padding-left: 50px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
 
 .breadcrumb-permalink:hover {
     text-decoration: underline;
@@ -584,11 +590,17 @@ h6 {
     word-break: keep-all;
 }
 
+.post-body h2{
+    padding-top: 1.2em;
+    padding-bottom: 0.8em;
+}
+
 .post-body p {
     font-size: 1.1em;
     margin-top: 0.8em;
     margin-bottom: 0.8em;
     word-break: keep-all;
+    padding-left: 1em;
 }
 
 .post-body a[id=url] {
@@ -620,6 +632,7 @@ h6 {
 .post-body .caption{
     text-align: center;
     color: #1685d0;
+    padding-bottom: 0.8em;
 }
 
 .post-body ul {
