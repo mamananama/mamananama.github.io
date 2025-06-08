@@ -7,13 +7,13 @@ ul { list-style: none; }
 
 a { text-decoration: none; color: inherit; }
 
-body { font-family: 'SUITE-Regular'; display: flex; flex-direction: row; justify-content: center; width: 100%; height: 100%; overflow-x: hidden; }
+body { font-family: 'SUITE-Regular'; display: flex; flex-direction: row; justify-content: center; width: 100%; height: 100%; overflow-x: hidden; -webkit-text-size-adjust: 100%; -ms-text-size-adjust: 100%; -moz-osx-font-smoothing: grayscale; -webkit-font-smoothing: antialiased; touch-action: manipulation; }
 
 .horizontal-menu { width: 100%; height: 48px; box-sizing: border-box; display: flex; justify-content: start; align-items: center; gap: 20px; padding-left: 20px; background-color: #868686; box-shadow: 0 4px 10px 0 #d0d0d0; margin-bottom: 20px; flex-shrink: 0; flex-grow: -1; }
 
 .horizontal-menu * { font-size: 24px; font-weight: bold; color: #ffffff; }
 
-.breadcrumb { padding-left: 50px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.breadcrumb { padding-right: 50px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
 
 .breadcrumb-permalink:hover { text-decoration: underline; text-underline-offset: 4px; text-decoration-thickness: 2px; transition: all 0.3s ease-in-out; }
 
@@ -136,11 +136,15 @@ h6 { font-size: 1.2em; font-weight: bold; margin-top: 24px; margin-bottom: 24px;
 
 .post-body h2 { padding-top: 1.2em; padding-bottom: 0.8em; }
 
+.post-body h3 { padding-top: 1.1em; padding-bottom: 0.6em; }
+
 .post-body p { font-size: 1.1em; margin-top: 0.8em; margin-bottom: 0.8em; word-break: keep-all; padding-left: 1em; }
 
 .post-body a[id=url] { display: flex; align-items: center; margin: 20px 0 20px 0; padding-left: 12px; height: 40px; border-left: 4px solid #0062ff; border-radius: 2px; text-decoration: none; color: #0062ff; background-color: #f1f1f1; }
 
-.post-body img { display: block; max-width: 700px; margin-top: 20px; margin-bottom: 10px; margin-left: auto; margin-right: auto; border: 2px solid #e9e9e9; border-radius: 8px; box-shadow: 4px 4px 4px #e9e9e9; transition: all 100ms ease-in; }
+.post-body li > p:first-child { display: inline; font-weight: bold; margin: 0; padding: 0; }
+
+.post-body img { display: block; box-sizing: border-box; max-width: 80%; height: auto; margin: 20px auto 10px; border: 2px solid #e9e9e9; border-radius: 8px; box-shadow: 4px 4px 4px #e9e9e9; transition: all 100ms ease-in; }
 
 .post-body .caption { text-align: center; color: #1685d0; padding-bottom: 0.8em; }
 
