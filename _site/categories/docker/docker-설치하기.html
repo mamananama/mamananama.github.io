@@ -8,7 +8,7 @@
     <meta name="MobileOptimized" content="320">
     <meta name="theme-color" content="#ffffff">
     <link rel="stylesheet" href="/assets/css/styles.css" />
-    <title>Docker 설치하기</title>
+    <title>Docker Desktop 설치하기</title>
 		<script>
 			document.addEventListener("DOMContentLoaded", function () {
 				requestAnimationFrame(function () {
@@ -47,12 +47,90 @@
 </header>
 					<div class="content-wrap"> <link rel="stylesheet" href="/assets/css/syntax.css" />
 <div class="post">
-	<h1>Docker 설치하기</h1>
+	<h1>Docker Desktop 설치하기</h1>
 	<div class="post-date">2025년 06월 03일</div>
 	<div class="preview-warp"></div>
 	<div class="horizon-bar"></div>
 	<div class="post-body">
-		
+		<h2 id="리눅스-이외의-환경에서-docker-실행하기">리눅스 이외의 환경에서 Docker 실행하기</h2>
+
+<p>Docker는 리눅스 컨테이너를 사용하는 기술이다.</p>
+
+<p>하지만 모든 개발 및 서비스 환경이 리눅스 운영체제 위에서 작동하지 않기 때문에, Docker를 리눅스 외부에서 실행할 수 있어야한다.</p>
+
+<p>개발 및 서비스 환경이 리눅스인 경우에 네이티브로 Docker를 실행하면 되지만, Window 또는 MacOS의 환경에서는 Docker를 직접 실행할 수 없다.</p>
+
+<p>따라서 Docker를 실행하기 위한 리눅스 가상 머신이 구성되어야 한다.</p>
+
+<h2 id="docker-desktop으로-설치하기">Docker Desktop으로 설치하기</h2>
+
+<p>Docker를 Windows PRO 및 Enterprise 버전에서 사용할 수 있는 방법 중 하나는 “Docker Desktop”을 사용하는 방법이다.</p>
+
+<p>이는 Windows PRO 및 Enterprise 버전에 내장된 가상 환경을 통해 Docker를 실행할 수 있도록 하는 프로그램이다.</p>
+
+<h3 id="준비과정">준비과정</h3>
+
+<ul>
+  <li>
+    <p>Hyper-V 활성화하기</p>
+
+    <p>Windwos에서 제공하는 가상화 기능을 사용하기 위해 Hyper-V를 활성화 한다.</p>
+
+    <p><img src="/assets/posts/250603/windows features.png" alt="&quot;Windows 기능 켜기/끄기&quot;에서 Hyper-V 활성화" /></p>
+
+    <p>Hyper-V 기능을 켜면, Windows를 재시작하여 적용한다.</p>
+  </li>
+  <li>
+    <p>Docker Desktop 다운로드</p>
+
+    <p><a href="https://www.docker.com" id="url">Docker Desktop 다운로드 링크</a></p>
+
+    <p>위 링크를 통해 Docker Desktop을 설치할 수 있다.</p>
+
+    <p><img src="/assets/posts/250603/docker_page.png" alt="Docker Desktop 다운로드 페이지" width="100%" /></p>
+
+    <p>페이지의 “Download Docker Desktop” 버튼을 클릭하여 설치 파일을 다운받는다.</p>
+  </li>
+  <li>
+    <p>Docker Desktop 설치 및 실행 Hub 계정 생성 / 로그인</p>
+
+    <p>Docker Desktop 설치 후 최초 실행시 Docker Hub 계정 로그인을 요구한다.</p>
+
+    <p>혹은 Google, GitHub 계정 연동을 통해 로그인한다.</p>
+
+    <p><img src="/assets/posts/250603/docker.png" alt="Docker Desktop 최초 실행시 Docker Hub 로그인을 요구한다" /></p>
+  </li>
+  <li>
+    <p>로그인 완료 후 Docker Desktop 실행</p>
+
+    <p>Docker Desktop의 로그인이 완료되면, 다음과 같은 화면이 나타난다.</p>
+
+    <p><img src="/assets/posts/250603/dockerdesktop.png" alt="Docker Desktop 화면" /></p>
+
+    <p><img src="/assets/posts/250603/trayicon.png" alt="트레이 아이콘에서 실행중인 Docker Desktop 확인" /></p>
+  </li>
+  <li>
+    <p>터미널(powershell)에서 Docker 실행 테스트</p>
+
+    <p>터미널에 <code class="language-plaintext highlighter-rouge">docker container run hello-world</code>를 입력하여 Docker가 정상적으로 설치되었는지 확인한다.</p>
+
+    <p>이 명령어를 통해 “<code class="language-plaintext highlighter-rouge">hello-world</code>“라는 특별한 이미지를 다운받게되고, 컨테이너가 실행된다.</p>
+
+    <div class="language-powershell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+</pre></td><td class="rouge-code"><pre><span class="w">  </span><span class="n">docker</span><span class="w"> </span><span class="nx">container</span><span class="w"> </span><span class="nx">run</span><span class="w"> </span><span class="nx">hello-world</span><span class="w">
+</span></pre></td></tr></tbody></table></code></pre></div>    </div>
+
+    <p><img src="/assets/posts/250603/hello_docker.png" alt="hello-world" /></p>
+
+    <p>위 이미지와 동일한 결과가 나타난다면, Docker가 정상적으로 설치된 것이다.</p>
+  </li>
+</ul>
+
+<h2 id="참고-링크">참고 링크</h2>
+
+<p><a href="https://www.docker.com/" id="url">Docker</a></p>
+
+<p><a href="https://docs.docker.com/" id="url">Dockerdocs</a></p>
 <div class="comment-container">
 			<script
 				src="https://giscus.app/client.js"

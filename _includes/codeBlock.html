@@ -1,7 +1,0 @@
-<div class="code-block">
-    {% assign lang = include.lang | default: "plaintext" %}
-    <div class="code-language">{{ lang | capitalize }}</div>
-    <pre><code class="language-{{ lang }}">
-        {{ include.content | escape }}
-    </code></pre>
-</div>

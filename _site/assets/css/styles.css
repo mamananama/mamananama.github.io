@@ -136,11 +136,15 @@ h6 { font-size: 1.2em; font-weight: bold; margin-top: 24px; margin-bottom: 24px;
 
 .post-body h2 { padding-top: 1.2em; padding-bottom: 0.8em; }
 
+.post-body h3 { padding-top: 1.1em; padding-bottom: 0.6em; }
+
 .post-body p { font-size: 1.1em; margin-top: 0.8em; margin-bottom: 0.8em; word-break: keep-all; padding-left: 1em; }
 
 .post-body a[id=url] { display: flex; align-items: center; margin: 20px 0 20px 0; padding-left: 12px; height: 40px; border-left: 4px solid #0062ff; border-radius: 2px; text-decoration: none; color: #0062ff; background-color: #f1f1f1; }
 
-.post-body img { display: block; max-width: 700px; margin-top: 20px; margin-bottom: 10px; margin-left: auto; margin-right: auto; border: 2px solid #e9e9e9; border-radius: 8px; box-shadow: 4px 4px 4px #e9e9e9; transition: all 100ms ease-in; }
+.post-body li > p:first-child { display: inline; font-weight: bold; margin: 0; padding: 0; }
+
+.post-body img { display: block; box-sizing: border-box; max-width: 80%; height: auto; margin: 20px auto 10px; border: 2px solid #e9e9e9; border-radius: 8px; box-shadow: 4px 4px 4px #e9e9e9; transition: all 100ms ease-in; }
 
 .post-body .caption { text-align: center; color: #1685d0; padding-bottom: 0.8em; }
 
