@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="ko" dir="ltr" class="no-js">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="MobileOptimized" content="320">
+    <meta name="theme-color" content="#ffffff">
+    <link rel="stylesheet" href="/assets/css/styles.css" />
+    <title>Docker 시작하기</title>
+		<script>
+			document.addEventListener("DOMContentLoaded", function () {
+				requestAnimationFrame(function () {
+					document.body.style.visibility = "visible";
+				});
+			});
+		</script>
+		<style>
+			body {
+				visibility: hidden;
+			}
+			.vertical-menu {
+				will-change: transform;
+			}
+		</style>
+	</head>
+
+	<body>
+		<div class="page">
+			<div class="main">
+				<div class="landing-main">
+					<header class="horizontal-menu">
+    <div class="menu-toggle">
+        <span></span>
+        <span></span>
+        <span></span>
+    </div>
+    <div class="breadcrumb">
+        <span class="breadcrumb-separator">/</span>
+        <a class="breadcrumb-permalink" href="/">Home</a>
+        
+        
+        
+        <span class="breadcrumb-separator">/</span>
+    </div>
+</header>
+					<div class="content-wrap"> <link rel="stylesheet" href="/assets/css/syntax.css" />
+<div class="post">
+	<h1>Docker 시작하기</h1>
+	<div class="post-date">2025년 06월 15일</div>
+	<div class="preview-warp">Docker 기본적인 명령어 모음</div>
+	<div class="horizon-bar"></div>
+	<div class="post-body">
+		<h2 id="docker-이미지-다운받기">Docker 이미지 다운받기</h2>
+
+<p>이미지는 컨테이너의 정의로, 애플리케이션을 실행하는데 필요한 모든 소프트웨어와 환경이 포함되어 있다.</p>
+
+<p>아래와 같은 명령어를 통해 Docker 이미지를 다운받을 수 있으며, 다운받는 환경에서 Docker 컨테이너를 사용할 수 있게 된다.</p>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+</pre></td><td class="rouge-code"><pre>docker image pull <span class="o">{</span>docker_image_name<span class="o">}</span>
+</pre></td></tr></tbody></table></code></pre></div></div>
+
+<p>해당 명령어를 통해 <code class="language-plaintext highlighter-rouge">docker_image_name</code> 이름으로 으로 구성된 이미지를 Docker가 찾아서 다운받게 된다.</p>
+
+<h2 id="docker-이미지-실행하기">Docker 이미지 실행하기</h2>
+
+<p>이미지를 다운받은 후, 아래와 같은 명령어를 통해 Docker 이미지를 실행할 수 있다.</p>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+</pre></td><td class="rouge-code"><pre>docker image run <span class="o">{</span>docker_image_name<span class="o">}</span>
+</pre></td></tr></tbody></table></code></pre></div></div>
+
+<h2 id="docker-포트-매핑하기">Docker 포트 매핑하기</h2>
+
+<p>하지만, 웹 서버를 실행하는 경우 예를들어, 8080 포트로 Tomcat을 실행할 때
+해당 포트는 Docker 컨테이너 내부에서 실행되고 있기 때문에, 컨테이너 외부에서 이러한 포트가 나타나지 않으며 게시되지 않는 문제가 발생한다.</p>
+
+<p>아래와 같은 명령어를 통하여 Docker를 실행하면, 컨테이너의 포트를 외부로 노출시킬 수 있다.</p>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+</pre></td><td class="rouge-code"><pre>docker image run <span class="nt">-p</span> <span class="o">{</span>external_port<span class="o">}</span>:<span class="o">{</span>internal_port<span class="o">}</span> <span class="o">{</span>docker_image_name<span class="o">}</span>
+</pre></td></tr></tbody></table></code></pre></div></div>
+
+<p>예를들어, <code class="language-plaintext highlighter-rouge">docker image run -p 8080:8080 {docker_image_name}</code>와 같은 명령어를 실행하면, Docker 컨테이너에서 실행된 웹 어플리케이션을 <code class="language-plaintext highlighter-rouge">localhost:8080</code>으로 접근할 수 있다.</p>
+
+<p>여기서 <code class="language-plaintext highlighter-rouge">{external_port}</code>는 컨테이너 외부에서 접근할 포트를 의미하며, <code class="language-plaintext highlighter-rouge">{internal_port}</code>는 컨테이너 내부에서 실행되는 포트를 의미한다.</p>
+
+<p>이러한 포트 매핑 옵션을 통해 <code class="language-plaintext highlighter-rouge">{external_port}</code>를 브라우저에 입력하여 웹 어플리케이션으로 접근할 수 있게 된다.</p>
+
+<p>만약, -p 옵션을 통해 포트를 연결하지 않으면, 컨테이너 내부에서 실행된 웹 어플리케이션은 외부에서 접근할 수 없다.</p>
+
+<p>Docker toolbox를 사용할 경우 아래와 같은 명령어를 통하여 컨테이너가 실행중인 IP를 확인하여 웹 어플리케이션으로 접근할 수 있다.</p>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+</pre></td><td class="rouge-code"><pre>docker-machine ip
+</pre></td></tr></tbody></table></code></pre></div></div>
+
+<h2 id="docker-컨테이너-확인하기">Docker 컨테이너 확인하기</h2>
+
+<p>현재 실행중인 Docker 컨테이너를 확인하려면, 아래와 같은 명령어로 확인할 수 있다.</p>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+</pre></td><td class="rouge-code"><pre>docker container <span class="nb">ls</span>
+</pre></td></tr></tbody></table></code></pre></div></div>
+
+<h2 id="docker-컨테이너-종료하기">Docker 컨테이너 종료하기</h2>
+
+<p>실행중인 Docker 컨테이너를 종료하려면, 아래와 같은 명령어를 사용할 수 있다.</p>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+</pre></td><td class="rouge-code"><pre>docker container stop <span class="o">{</span>container_id<span class="o">}</span>
+</pre></td></tr></tbody></table></code></pre></div></div>
+
+<p>여기서 <code class="language-plaintext highlighter-rouge">container_id</code>는 <code class="language-plaintext highlighter-rouge">docker container ls</code> 명령어를 통해 확인할 수 있다.</p>
+
+<p><img src="/assets/posts/250615/docker_ls.png" alt="docker container ls" style="padding: 16px" /></p>
+
+<p>container id 를 확인한 후, id 전체 혹은 앞부분의 일부만을 입력하여 종료할 수 있다.</p>
+
+<p>예를 들어, 위의 이미지 기준, ‘<code class="language-plaintext highlighter-rouge">7b26</code>‘만 입력하여도 컨테이너가 종료된다.</p>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+</pre></td><td class="rouge-code"><pre>docker container stop 7b26
+</pre></td></tr></tbody></table></code></pre></div></div>
+<div class="comment-container">
+			<script
+				src="https://giscus.app/client.js"
+				data-repo="mamananama/blog-comment"
+				data-repo-id="R_kgDONmD07w"
+				data-category="Announcements"
+				data-category-id="DIC_kwDONmD0784Clu5b"
+				data-mapping="pathname"
+				data-strict="0"
+				data-reactions-enabled="1"
+				data-emit-metadata="0"
+				data-input-position="top"
+				data-theme="preferred_color_scheme"
+				data-lang="ko"
+				data-loading="lazy"
+				crossorigin="anonymous"
+				async></script>
+		</div>
+		<div class="post-navigation">
+			 
+		</div>
+	</div>
+</div>
+<script src="/assets/scripts/jquery-3.7.1.min.js"></script>
+<script src="/assets/scripts/imageOrigin.js"></script>
+ </div>
+				</div>
+				<link rel="stylesheet" href="/assets/tipuesearch/css/tipuesearch.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="/assets/tipuesearch/tipuesearch_content.js"></script>
+<script src="/assets/tipuesearch/tipuesearch_set.js"></script>
+<script src="/assets/tipuesearch/tipuesearch.min.js"></script>
+
+<nav class="vertical-menu">
+	<div class="profile-container">
+		
+		<img src="https://avatars.githubusercontent.com/u/114140050?v=4" alt="profile image" class="profile-image">
+		
+		<div class="profile-name">
+			<div>mamananama</div>
+		</div>
+		
+		<div class="profile-description">
+			<div>안녕하세요</div>
+		</div>
+		<div class="profile-sns">
+			
+			<div class="profile-sns-item">
+				<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+					<path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
+				</svg>
+				<a href="https://github.com/mamananama">GitHub</a>
+			</div>
+			
+		</div>
+	</div>
+	<hr width="80%" color="#d6d6d6">	
+
+	<div class="vertical-menu-container">
+		<div class="search-wrap">
+			<form action="/search">
+				<div class="tipue_search_left">
+					<img src="/assets/tipuesearch/search.png" class="tipue_search_icon">
+				</div>
+				<div class="tipue_search_right">
+					<input type="text" name="q" id="tipue_search_input" pattern=".{1,}" title="At least 1 characters" required></div>
+				<div style="clear: both;"></div>
+			 </form>
+		</div>
+		
+		<div class="vertical-menu-title" onclick="location.href='/'" >Home</div>
+		
+		<div class="vertical-menu-title" onclick="location.href='/categories'" >Categories</div>
+		
+		<div class="vertical-menu-title" onclick="location.href='/about'" >About</div>
+		
+	</div>
+</nav>
+
+			</div>
+		</div>
+	</body>
+	<script>
+		const menuToggle = document.querySelector(".menu-toggle");
+		const verticalMenu = document.querySelector(".vertical-menu");
+		const landingMain = document.querySelector(".landing-main");
+
+		menuToggle.addEventListener("click", function (e) {
+			e.stopPropagation();
+			verticalMenu.classList.toggle("active");
+			menuToggle.classList.toggle("active");
+		});
+
+		landingMain.addEventListener("click", function () {
+			if (verticalMenu.classList.contains("active")) {
+				verticalMenu.classList.remove("active");
+				menuToggle.classList.remove("active");
+			}
+		});
+
+		// 페이지 전환 시 깜빡임 방지
+		document.addEventListener("click", function (e) {
+			if (e.target.tagName === "A" && e.target.href && e.target.href.startsWith(window.location.origin)) {
+				e.preventDefault();
+				const targetUrl = e.target.href;
+
+				// 현재 페이지의 상태 저장
+				const currentState = {
+					verticalMenu: verticalMenu.classList.contains("active"),
+					menuToggle: menuToggle.classList.contains("active"),
+					horizontalMenu: document.querySelector(".horizontal-menu").innerHTML,
+				};
+
+				// 새 페이지 로드
+				fetch(targetUrl)
+					.then(response => response.text())
+					.then(html => {
+						const parser = new DOMParser();
+						const doc = parser.parseFromString(html, "text/html");
+						const newContent = doc.querySelector(".content-wrap").innerHTML;
+						const newHorizontalMenu = doc.querySelector(".horizontal-menu").innerHTML;
+
+						// 컨텐츠와 horizontal-menu 업데이트
+						document.querySelector(".content-wrap").innerHTML = newContent;
+						document.querySelector(".horizontal-menu").innerHTML = newHorizontalMenu;
+
+						// URL 업데이트
+						window.history.pushState({}, "", targetUrl);
+
+						// 이전 상태 복원
+						if (currentState.verticalMenu) {
+							verticalMenu.classList.add("active");
+							menuToggle.classList.add("active");
+						}
+
+						// horizontal-menu 이벤트 리스너 재설정
+						const newMenuToggle = document.querySelector(".menu-toggle");
+						if (newMenuToggle) {
+							newMenuToggle.addEventListener("click", function (e) {
+								e.stopPropagation();
+								verticalMenu.classList.toggle("active");
+								newMenuToggle.classList.toggle("active");
+							});
+						}
+					});
+			}
+		});
+	</script>
+</html>

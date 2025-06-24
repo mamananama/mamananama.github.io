@@ -1,4 +1,75 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.10.0">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2025-06-08T17:27:27+09:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">Your awesome title</title><subtitle>Write an awesome description for your new site here. You can edit this line in _config.yml. It will appear in your document head meta (for Google search results) and in your feed.xml site description.</subtitle><entry><title type="html">Docker Desktop 설치하기</title><link href="http://localhost:4000/categories/docker/docker-%EC%84%A4%EC%B9%98%ED%95%98%EA%B8%B0.html" rel="alternate" type="text/html" title="Docker Desktop 설치하기" /><published>2025-06-03T16:25:54+09:00</published><updated>2025-06-03T16:25:54+09:00</updated><id>http://localhost:4000/categories/docker/docker-%EC%84%A4%EC%B9%98%ED%95%98%EA%B8%B0</id><content type="html" xml:base="http://localhost:4000/categories/docker/docker-%EC%84%A4%EC%B9%98%ED%95%98%EA%B8%B0.html"><![CDATA[<h2 id="리눅스-이외의-환경에서-docker-실행하기">리눅스 이외의 환경에서 Docker 실행하기</h2>
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.10.0">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2025-06-24T23:14:39+09:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">Your awesome title</title><subtitle>Write an awesome description for your new site here. You can edit this line in _config.yml. It will appear in your document head meta (for Google search results) and in your feed.xml site description.</subtitle><entry><title type="html">Docker 시작하기</title><link href="http://localhost:4000/categories/docker/docker-%EC%8B%9C%EC%9E%91%ED%95%98%EA%B8%B0.html" rel="alternate" type="text/html" title="Docker 시작하기" /><published>2025-06-15T21:11:35+09:00</published><updated>2025-06-15T21:11:35+09:00</updated><id>http://localhost:4000/categories/docker/docker-%EC%8B%9C%EC%9E%91%ED%95%98%EA%B8%B0</id><content type="html" xml:base="http://localhost:4000/categories/docker/docker-%EC%8B%9C%EC%9E%91%ED%95%98%EA%B8%B0.html"><![CDATA[<h2 id="docker-이미지-다운받기">Docker 이미지 다운받기</h2>
+
+<p>이미지는 컨테이너의 정의로, 애플리케이션을 실행하는데 필요한 모든 소프트웨어와 환경이 포함되어 있다.</p>
+
+<p>아래와 같은 명령어를 통해 Docker 이미지를 다운받을 수 있으며, 다운받는 환경에서 Docker 컨테이너를 사용할 수 있게 된다.</p>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+</pre></td><td class="rouge-code"><pre>docker image pull <span class="o">{</span>docker_image_name<span class="o">}</span>
+</pre></td></tr></tbody></table></code></pre></div></div>
+
+<p>해당 명령어를 통해 <code class="language-plaintext highlighter-rouge">docker_image_name</code> 이름으로 으로 구성된 이미지를 Docker가 찾아서 다운받게 된다.</p>
+
+<h2 id="docker-이미지-실행하기">Docker 이미지 실행하기</h2>
+
+<p>이미지를 다운받은 후, 아래와 같은 명령어를 통해 Docker 이미지를 실행할 수 있다.</p>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+</pre></td><td class="rouge-code"><pre>docker image run <span class="o">{</span>docker_image_name<span class="o">}</span>
+</pre></td></tr></tbody></table></code></pre></div></div>
+
+<h2 id="docker-포트-매핑하기">Docker 포트 매핑하기</h2>
+
+<p>하지만, 웹 서버를 실행하는 경우 예를들어, 8080 포트로 Tomcat을 실행할 때
+해당 포트는 Docker 컨테이너 내부에서 실행되고 있기 때문에, 컨테이너 외부에서 이러한 포트가 나타나지 않으며 게시되지 않는 문제가 발생한다.</p>
+
+<p>아래와 같은 명령어를 통하여 Docker를 실행하면, 컨테이너의 포트를 외부로 노출시킬 수 있다.</p>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+</pre></td><td class="rouge-code"><pre>docker image run <span class="nt">-p</span> <span class="o">{</span>external_port<span class="o">}</span>:<span class="o">{</span>internal_port<span class="o">}</span> <span class="o">{</span>docker_image_name<span class="o">}</span>
+</pre></td></tr></tbody></table></code></pre></div></div>
+
+<p>예를들어, <code class="language-plaintext highlighter-rouge">docker image run -p 8080:8080 {docker_image_name}</code>와 같은 명령어를 실행하면, Docker 컨테이너에서 실행된 웹 어플리케이션을 <code class="language-plaintext highlighter-rouge">localhost:8080</code>으로 접근할 수 있다.</p>
+
+<p>여기서 <code class="language-plaintext highlighter-rouge">{external_port}</code>는 컨테이너 외부에서 접근할 포트를 의미하며, <code class="language-plaintext highlighter-rouge">{internal_port}</code>는 컨테이너 내부에서 실행되는 포트를 의미한다.</p>
+
+<p>이러한 포트 매핑 옵션을 통해 <code class="language-plaintext highlighter-rouge">{external_port}</code>를 브라우저에 입력하여 웹 어플리케이션으로 접근할 수 있게 된다.</p>
+
+<p>만약, -p 옵션을 통해 포트를 연결하지 않으면, 컨테이너 내부에서 실행된 웹 어플리케이션은 외부에서 접근할 수 없다.</p>
+
+<p>Docker toolbox를 사용할 경우 아래와 같은 명령어를 통하여 컨테이너가 실행중인 IP를 확인하여 웹 어플리케이션으로 접근할 수 있다.</p>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+</pre></td><td class="rouge-code"><pre>docker-machine ip
+</pre></td></tr></tbody></table></code></pre></div></div>
+
+<h2 id="docker-컨테이너-확인하기">Docker 컨테이너 확인하기</h2>
+
+<p>현재 실행중인 Docker 컨테이너를 확인하려면, 아래와 같은 명령어로 확인할 수 있다.</p>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+</pre></td><td class="rouge-code"><pre>docker container <span class="nb">ls</span>
+</pre></td></tr></tbody></table></code></pre></div></div>
+
+<h2 id="docker-컨테이너-종료하기">Docker 컨테이너 종료하기</h2>
+
+<p>실행중인 Docker 컨테이너를 종료하려면, 아래와 같은 명령어를 사용할 수 있다.</p>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+</pre></td><td class="rouge-code"><pre>docker container stop <span class="o">{</span>container_id<span class="o">}</span>
+</pre></td></tr></tbody></table></code></pre></div></div>
+
+<p>여기서 <code class="language-plaintext highlighter-rouge">container_id</code>는 <code class="language-plaintext highlighter-rouge">docker container ls</code> 명령어를 통해 확인할 수 있다.</p>
+
+<p><img src="/assets/posts/250615/docker_ls.png" alt="docker container ls" style="padding: 16px" /></p>
+
+<p>container id 를 확인한 후, id 전체 혹은 앞부분의 일부만을 입력하여 종료할 수 있다.</p>
+
+<p>예를 들어, 위의 이미지 기준, ‘<code class="language-plaintext highlighter-rouge">7b26</code>‘만 입력하여도 컨테이너가 종료된다.</p>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+</pre></td><td class="rouge-code"><pre>docker container stop 7b26
+</pre></td></tr></tbody></table></code></pre></div></div>]]></content><author><name></name></author><category term="Docker" /><category term="Docker" /><summary type="html"><![CDATA[Docker 기본적인 명령어 모음]]></summary></entry><entry><title type="html">Docker Desktop 설치하기</title><link href="http://localhost:4000/categories/docker/docker-%EC%84%A4%EC%B9%98%ED%95%98%EA%B8%B0.html" rel="alternate" type="text/html" title="Docker Desktop 설치하기" /><published>2025-06-08T00:00:00+09:00</published><updated>2025-06-08T00:00:00+09:00</updated><id>http://localhost:4000/categories/docker/docker-%EC%84%A4%EC%B9%98%ED%95%98%EA%B8%B0</id><content type="html" xml:base="http://localhost:4000/categories/docker/docker-%EC%84%A4%EC%B9%98%ED%95%98%EA%B8%B0.html"><![CDATA[<h2 id="리눅스-이외의-환경에서-docker-실행하기">리눅스 이외의 환경에서 Docker 실행하기</h2>
 
 <p>Docker는 리눅스 컨테이너를 사용하는 기술이다.</p>
 
@@ -68,7 +139,7 @@
 
     <p><img src="/assets/posts/250603/hello_docker.png" alt="hello-world" /></p>
 
-    <p>위 이미지와 동일한 결과가 나타난다면, Docker가 정상적으로 설치된 것이다.</p>
+    <p>위 이미지와 동일한 결과가 나타난다면, Docker 이미지를 다운받고, Container를 실행하는 일련의 과정이 진행된 것으로 Docker가 정상적으로 설치된 것을 확인할 수 있다.</p>
   </li>
 </ul>
 
